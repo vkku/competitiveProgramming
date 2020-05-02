@@ -1,4 +1,4 @@
-package java;
+package me.vkku.quiz;
 
 import java.io.BufferedReader;
 import java.io.IOException;

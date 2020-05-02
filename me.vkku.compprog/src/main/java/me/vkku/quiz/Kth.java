@@ -1,4 +1,4 @@
-package java;
+package me.vkku.quiz;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import static java.lang.Math.abs;
 
     public class Kth {
-        public static void main(String[] args) throws IOException {
+        public static void kthSweetest() throws IOException {
 
                 BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
                 String sweetnessSize = br.readLine();             //5
