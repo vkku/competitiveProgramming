@@ -66,9 +66,6 @@ public class MaxSubsetHeap {
              if(subsettedArray[pQueue.peek()] == null){
                  subsettedArray[pQueue.poll()] = maxArrayList.get(index++);
              }
-             else{
-
-             }
 
          }
 
