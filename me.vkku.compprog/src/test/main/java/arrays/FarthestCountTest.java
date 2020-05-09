@@ -36,7 +36,7 @@ public class FarthestCountTest {
         integerSet.add(mapinMapB);
         System.out.println(integerSet);*/
 
-
+/*
         //max-heap
         PriorityQueue<Map<Integer, Map<Integer, Integer>>> pQueue = new PriorityQueue<>(Collections.reverseOrder());
 
@@ -50,6 +50,21 @@ public class FarthestCountTest {
         relMap.put(2, intMap);
         relMap.put(3, intMap2);
         pQueue.add(relMap);
+        while (!pQueue.isEmpty()){
+            System.out.println(pQueue.poll());
+        }*/
+
+        PriorityQueue<Map<Integer, Integer>> pQueue = new PriorityQueue<>(Collections.reverseOrder());
+        pQueue.add(new HashMap<Integer, Integer>(){
+            {
+                put(5, 5);
+                put(2, 2);
+                put(13, 1);
+                put(17, 1);
+                put(22, 1);
+            }
+        });
+
         while (!pQueue.isEmpty()){
             System.out.println(pQueue.poll());
         }

@@ -1,6 +1,7 @@
 package me.vkku.arrays;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class MaxSubsetHeap {
@@ -23,7 +24,7 @@ public class MaxSubsetHeap {
 
         List<List<Integer>> subsetList = new ArrayList<>();
         //max-heap
-        PriorityQueue<Integer> pQueue = new PriorityQueue<Integer>(Collections.reverseOrder());
+        PriorityQueue<Map<Integer, Integer>> pQueue = new PriorityQueue<>(Collections.reverseOrder());
         int[] indexCounter;
         indexCounter = new int[defaultArrayList.size()];
 
@@ -42,9 +43,19 @@ public class MaxSubsetHeap {
         List<Integer> indexCounterList = Arrays.stream(indexCounter).boxed().collect(Collectors.toList());
 
         //Populate max-heap
+        AtomicInteger i = new AtomicInteger(0);
+        Map<Integer, Integer> indexCounterMap= new TreeMap<>();
         indexCounterList.forEach(indexFrequency -> {
-            pQueue.add(indexFrequency);
+            indexCounterMap.put(i.getAndAdd(1), indexFrequency);
         });
+
+        //pQueue.add(indexCounterMap);
+
+        Map<Integer,Integer> priorityMap =
+        indexCounterMap.entrySet().stream()
+                .sorted(Map.Entry.<Integer, Integer>comparingByValue().reversed())
+                .collect(Collectors.toMap(Map.Entry::getKey,
+                                          Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 
         List<Integer> maxArrayList = new ArrayList<>();
         for(Integer item : defaultArrayList) {
@@ -55,19 +66,13 @@ public class MaxSubsetHeap {
 
 
         Integer[] subsettedArray = new Integer[defaultArrayList.size()];
-        /*
-        for(int i = 0 ; i < defaultArrayList.size() - 1 ; i++){
-            subsettedArray[i] = maxArrayList.get(i);
-        }*/
 
+        Set<Integer> priorityIndexes = priorityMap.keySet();
+        Integer[] priorityIndexArray = priorityIndexes.toArray(new Integer[defaultArray.length()]);
+        for(int count = 0 ; count < priorityIndexes.size() ; count++){
+            subsettedArray[priorityIndexArray[count]] = maxArrayList.get(count);
+        }
 
-         int index = 0;
-         while(!pQueue.isEmpty()){
-             if(subsettedArray[pQueue.peek()] == null){
-                 subsettedArray[pQueue.poll()] = maxArrayList.get(index++);
-             }
-
-         }
 
 
 
