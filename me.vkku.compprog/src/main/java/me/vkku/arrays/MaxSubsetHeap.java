@@ -4,6 +4,8 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
+import static java.lang.Math.abs;
+
 public class MaxSubsetHeap {
 
     public static void main(String[] args){
@@ -27,6 +29,8 @@ public class MaxSubsetHeap {
         PriorityQueue<Map<Integer, Integer>> pQueue = new PriorityQueue<>(Collections.reverseOrder());
         int[] indexCounter;
         indexCounter = new int[defaultArrayList.size()];
+         AtomicInteger aliceCount = new AtomicInteger(0);
+         AtomicInteger bobCount = new AtomicInteger(0);
 
         //Input SubSets
         for(int i = 0 ; i < arrLenSubArrList.get(1) ; i++){
@@ -36,6 +40,7 @@ public class MaxSubsetHeap {
 
         subsetList.forEach(subsetListItem -> {
             for(int i = subsetListItem.get(0) - 1 ; i <= subsetListItem.get(1) - 1 ; i++){
+                aliceCount.getAndAdd(defaultArrayList.get(i));
                 indexCounter[i]++;
             }
         });
@@ -74,6 +79,15 @@ public class MaxSubsetHeap {
         }
 
 
+
+        subsetList.forEach(subsetListItem -> {
+            for(int counter = subsetListItem.get(0) - 1 ; counter <= subsetListItem.get(1) - 1 ; counter++){
+                bobCount.getAndAdd(subsettedArray[counter]);
+            }
+        });
+
+        //Print Alice and Bob's difference
+        System.out.println(abs(bobCount.get() - aliceCount.get()));
 
 
 
