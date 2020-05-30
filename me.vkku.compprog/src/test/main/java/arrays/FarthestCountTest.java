@@ -1,6 +1,7 @@
 package main.java.arrays;
 
 import org.junit.Test;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -55,7 +56,7 @@ public class FarthestCountTest {
         }*/
 
         PriorityQueue<Map<Integer, Integer>> pQueue = new PriorityQueue<>(Collections.reverseOrder());
-        pQueue.add(new HashMap<Integer, Integer>(){
+        pQueue.add(new HashMap<Integer, Integer>() {
             {
                 put(5, 5);
                 put(2, 2);
@@ -65,10 +66,9 @@ public class FarthestCountTest {
             }
         });
 
-        while (!pQueue.isEmpty()){
+        while (!pQueue.isEmpty()) {
             System.out.println(pQueue.poll());
         }
-
 
 
     }

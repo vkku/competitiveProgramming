@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+
 import static java.lang.Math.abs;
 
 public class FarthestCount {
@@ -23,27 +24,25 @@ public class FarthestCount {
 
         String[] numArr = numbers.split(" ");
         List<String> numArrList = new ArrayList<String>(numArr.length);
-        for (String am:numArr) {
-            numArrList.add( am );
+        for (String am : numArr) {
+            numArrList.add(am);
         }
         List<Integer> numIntList = numArrList.stream().map(Integer::parseInt).collect(Collectors.toList());
 
         Collections.sort(numIntList);
 
         Integer smallest = abs(numIntList.get(0));
-        Integer largest = abs(numIntList.get(numIntList.size()-1));
+        Integer largest = abs(numIntList.get(numIntList.size() - 1));
 
         Integer distance = largest - smallest > 0 ? largest : smallest;
 
-        if(distance == smallest){
-            System.out.println("-"+smallest);
-        }
-        else {
+        if (distance == smallest) {
+            System.out.println("-" + smallest);
+        } else {
             System.out.println(largest);
         }
 
     }
-
 
 
 }
